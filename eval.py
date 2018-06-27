@@ -43,7 +43,7 @@ def eval(aligned_images, model_path):
 
 def load_image(image_path, shape_predictor):
     # detector = dlib.get_frontal_face_detector()
-    detector = dlib.cnn_face_detection_model_v1("/home/lijc08/fqc/Age-Gender-Estimate-TF/mmod_human_face_detector.dat")
+    detector = dlib.cnn_face_detection_model_v1("./mmod_human_face_detector.dat")
     predictor = dlib.shape_predictor(shape_predictor)
     fa = FaceAligner(predictor, desiredFaceWidth=160)
     image = cv2.imread(image_path, cv2.IMREAD_COLOR)
@@ -115,5 +115,5 @@ if __name__ == '__main__':
     ages, genders = eval(aligned_image, args.model_path)
     print("xxxxxxxxx=============>", ages, genders)
     draw_label(image, XY, ages, genders, font_scale=args.font_scale, thickness=args.thickness)
-    # plt.imshow(image[:, :, (2, 1, 0)])
+    plt.imshow(image[:, :, (2, 1, 0)])
     plt.show()
